@@ -7,7 +7,7 @@ var bio = {
         "location": "New York City",
         "email": "miguemetri@gmail.com"
     }],
-    "welcomeMessage": "I am a versatile multimedia strategist with broad skill set. Web Development, Digital Marketing and Graphic Design.",
+    "welcomeMessage": "I am all-round multimedia strategist with a broad skill set in web development, graphic design and digital marketing. I have four years of experience designing and improving user experiences for a diverse group of people. I have worked on multiple projects that have gave me the opportunity to learn new skills such as web analytics and graphic design. I am always looking for improvement and thirsty for knowledge. Currently, I am doing online Front-end dev program called Udacity that is giving me the skills to get better at coding. I like to get involve in projects that make a difference and be surrounded by intelligent and open-minded people.",
     "skills": ["HTML5", "CSS3", "Media Query", "JavaScript", " P5", "Bootstrap", "jQuery", "CMS", "Ektron", "GitHub"],
     "biopic": "images/profile.jpeg"
 };
@@ -76,15 +76,15 @@ bio.display = function() {
     $("#header").prepend(formattedRole).prepend(formattedName).append(formattedBioPic, formattedMessage);
     $("#header").append(HTMLskillsStart);
 
-    bio["skills"].forEach(function(skill) {
-        var formattedSkill = HTMLskills.replace("%data%", skill);
-        $("#skills").append(formattedSkill);
-    });
+    for (var i = 0; i < bio.skills.length; i++) {
+        var formattedSkills = HTMLskills.replace("%data%", bio.skills[i]);
+        $("#skills").append(formattedSkills);
+    }
 
-    for (var i = 0; i < bio.contacts.length; i++) {
-        var formattedMobile = HTMLmobile.replace("%data%", bio.contacts[i].mobile);
-        var formattedEmail = HTMLemail.replace("%data%", bio.contacts[i].email);
-        var formattedGithub = HTMLcontactGeneric.replace("%contact%", "github").replace("%data%", bio.contacts[i].github);
+    for (var j = 0; j < bio.contacts.length; j++) {
+        var formattedMobile = HTMLmobile.replace("%data%", bio.contacts[j].mobile);
+        var formattedEmail = HTMLemail.replace("%data%", bio.contacts[j].email);
+        var formattedGithub = HTMLcontactGeneric.replace("%contact%", "github").replace("%data%", bio.contacts[j].github);
         $("#footerContacts").append(formattedMobile, formattedEmail, formattedGithub);
     }
 };
