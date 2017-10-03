@@ -30,7 +30,7 @@ var education = {
             "url": "http://www.laguardia.edu/"
         }
     ],
-    "online courses": [{
+    "onlineCourses": [{
         "title": "Front-End Web Developer Nanodegree",
         "school": "Udacity",
         "dates": "2017 - Present",
@@ -76,19 +76,19 @@ bio.display = function() {
     $("#header").prepend(formattedRole).prepend(formattedName).append(formattedBioPic, formattedMessage);
     $("#header").append(HTMLskillsStart);
 
+    bio["skills"].forEach(function(skill) {
+        var formattedSkill = HTMLskills.replace("%data%", skill);
+        $("#skills").append(formattedSkill);
+    });
 
-    for (var i = 0; i < bio.skills.length; i++) {
-        var formattedSkills = HTMLskills.replace("%data%", bio.skills[i]);
-        $("#skills").append(formattedSkills);
-    }
-
-    for (var contact in bio.contacts) {
-        var formattedMobile = HTMLmobile.replace("%data%", bio.contacts[contact].mobile);
-        var formattedEmail = HTMLemail.replace("%data%", bio.contacts[contact].email);
-        var formattedGithub = HTMLcontactGeneric.replace("%contact%", "github").replace("%data%", bio.contacts[contact].github);
+    for (var i = 0; i < bio.contacts.length; i++) {
+        var formattedMobile = HTMLmobile.replace("%data%", bio.contacts[i].mobile);
+        var formattedEmail = HTMLemail.replace("%data%", bio.contacts[i].email);
+        var formattedGithub = HTMLcontactGeneric.replace("%contact%", "github").replace("%data%", bio.contacts[i].github);
         $("#footerContacts").append(formattedMobile, formattedEmail, formattedGithub);
     }
 };
+
 
 education.display = function() {
     for (var i = 0; i < education.schools.length; i++) {
@@ -117,7 +117,7 @@ work.display = function() {
 };
 
 projects.display = function() {
-    for (var i = 0; i < projects.project.length; i++){
+    for (var i = 0; i < projects.project.length; i++) {
         $("#projects").append(HTMLprojectStart);
         var formattedTitle = HTMLprojectTitle.replace("%data%", projects.project[i].title);
         var formattedDates = HTMLprojectDates.replace("%data%", projects.project[i].dates);
